@@ -1,0 +1,61 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Multiples getter
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!--
+  Here we start the code editing. This project was made with Ionic template for a web application.
+  This was made with assistance of the Ionic plugin of VSCode.
+  -->
+  <div id="container">
+    <div id="input-form">
+      <!--
+      First I used a ion-input with a numeric type; I was hoping to make it so only numbers are written but
+      this was more difficult that it looked, and all the solutions I found I barely understood them, and is
+      not a main focus of the problem. This input is used as the variable userInput on the component home.
+      -->
+      <ion-input id="number" type="number" inputMode="numeric" step="1" [(ngModel)]="userInput" label="Write a number:"></ion-input>
+      <!--The Send button calls the generateNumbers() function of the component home that processes all the algorithm.-->
+      <ion-button id="Send" (click)="generateNumbers()" >Send</ion-button>
+      <!--
+      For each number I used a span for easy distribution, using an angular For for each number that has
+      been processed after the function execution. To change the color I created classes for each type
+      of multiple, using an ngClass to add the type depending to which multiple belongs. The CSS is ordered
+      in a way the color applies for the lowest number.
+      -->
+      <div>
+        <span *ngFor="let n of numbersArray" [ngClass]="{
+          'multiple-of-seven': n % 7 === 0,
+          'multiple-of-five': n % 5 === 0,
+          'multiple-of-three': n % 3 === 0
+        }">{{ n }} </span>
+      </div>
+      <!--
+      To show separetely each list of multiples, I reuse the classes and an angular If to show if there are
+      any numbers at all, and if so, the label prints too.
+      -->
+      <div class="multiple-of-three">
+        <ion-label class="label-of-multiple" *ngIf="multiplesOf3.length > 0">{{ "Multiples of 3: " }}</ion-label>
+        <span *ngFor="let n of multiplesOf3">{{ n }} </span>
+      </div>
+      <div class="multiple-of-five">
+        <ion-label class="label-of-multiple" *ngIf="multiplesOf5.length > 0">{{ "Multiples of 5: " }}</ion-label>
+        <span *ngFor="let n of multiplesOf5">{{ n }} </span>
+      </div>
+      <div class="multiple-of-seven">
+        <ion-label class="label-of-multiple" *ngIf="multiplesOf7.length > 0">{{ "Multiples of 7: " }}</ion-label>
+        <span *ngFor="let n of multiplesOf7">{{ n }} </span>
+      </div>
+    </div>
+  </div>
+</ion-content>
